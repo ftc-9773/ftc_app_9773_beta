@@ -4,6 +4,7 @@ import com.qualcomm.ftcrobotcontroller.CameraPreview;
 import com.qualcomm.ftcrobotcontroller.FtcRobotControllerActivity;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,11 @@ import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.util.Log;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Date;
+import java.io.IOException;
 
 /**
  * TeleOp Mode
@@ -94,6 +100,7 @@ public class CameraOpMode extends OpMode {
             int blueValue = 0;
             int greenValue = 0;
             convertImage();
+            saveImage();
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     int pixel = image.getPixel(x, y);
@@ -118,5 +125,47 @@ public class CameraOpMode extends OpMode {
         }
         telemetry.addData("Looped","Looped " + Integer.toString(looped) + " times");
         Log.d("DEBUG:",data);
+
     }
+
+    public void saveImage(){
+        String directory = new String("/sdcard/FIRST");
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
+        File file = new File(timeStamp + ".jpeg");
+        String content = "This is the text content";
+        FileOutputStream fop = null;
+
+        try {
+
+            file = new File("c:/newfile.txt");
+            fop = new FileOutputStream(file);
+
+            // if file doesnt exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // get the content in bytes
+            byte[] contentInBytes = content.getBytes();
+
+            fop.write(contentInBytes);
+            fop.flush();
+            fop.close();
+
+            System.out.println("Done");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fop != null) {
+                    fop.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
