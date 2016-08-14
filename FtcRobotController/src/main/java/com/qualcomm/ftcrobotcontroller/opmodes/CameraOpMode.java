@@ -1,11 +1,5 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-import com.qualcomm.ftcrobotcontroller.CameraPreview;
-import com.qualcomm.ftcrobotcontroller.FtcRobotControllerActivity;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import java.io.ByteArrayOutputStream;
-import java.text.SimpleDateFormat;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
@@ -14,10 +8,16 @@ import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.util.Log;
 
+import com.qualcomm.ftcrobotcontroller.CameraPreview;
+import com.qualcomm.ftcrobotcontroller.FtcRobotControllerActivity;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Date;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * TeleOp Mode
@@ -132,13 +132,13 @@ public class CameraOpMode extends OpMode {
         String directory = new String("/sdcard/FIRST");
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
-        File file = new File(timeStamp + ".jpeg");
+
         String content = "This is the text content";
         FileOutputStream fop = null;
 
         try {
 
-            file = new File("c:/newfile.txt");
+            File file = new File(directory + timeStamp + ".jpeg");
             fop = new FileOutputStream(file);
 
             // if file doesnt exists, then create it
