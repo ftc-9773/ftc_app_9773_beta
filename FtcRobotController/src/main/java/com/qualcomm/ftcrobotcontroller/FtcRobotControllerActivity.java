@@ -113,14 +113,14 @@ public class FtcRobotControllerActivity extends Activity {
   protected Queue<UsbDevice> receivedUsbAttachmentNotifications;
 
   public Camera camera;
-  private Camera openFrontFacingCamera() {
+  private Camera openRearFacingCamera() {
     int cameraId = -1;
     Camera cam = null;
     int numberOfCameras = Camera.getNumberOfCameras();
     for (int i = 0; i < numberOfCameras; i++) {
       Camera.CameraInfo info = new Camera.CameraInfo();
       Camera.getCameraInfo(i, info);
-      if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+      if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
         cameraId = i;
         break;
       }
@@ -246,7 +246,7 @@ public class FtcRobotControllerActivity extends Activity {
 
     hittingMenuButtonBrightensScreen();
 
-    camera=openFrontFacingCamera();
+    camera=openRearFacingCamera();
 
     if (USE_DEVICE_EMULATION) { HardwareFactory.enableDeviceEmulation(); }
   }

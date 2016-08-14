@@ -129,7 +129,7 @@ public class CameraOpMode extends OpMode {
     }
 
     public void saveImage(){
-        String directory = new String("/sdcard/FIRST");
+        String directory = new String("/sdcard/FIRST/");
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
         FileOutputStream fop = null;
