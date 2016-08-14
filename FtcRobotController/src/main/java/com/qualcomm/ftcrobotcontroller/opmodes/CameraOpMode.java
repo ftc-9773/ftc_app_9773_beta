@@ -141,6 +141,7 @@ public class CameraOpMode extends OpMode {
             File file = new File(directory + timeStamp + ".jpeg");
             fop = new FileOutputStream(file);
 
+
             // if file doesnt exists, then create it
             if (!file.exists()) {
                 file.createNewFile();
