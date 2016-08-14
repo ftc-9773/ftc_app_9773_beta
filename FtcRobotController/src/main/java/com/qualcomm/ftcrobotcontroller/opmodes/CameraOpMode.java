@@ -132,8 +132,6 @@ public class CameraOpMode extends OpMode {
         String directory = new String("/sdcard/FIRST");
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
-
-        String content = "This is the text content";
         FileOutputStream fop = null;
 
         try {
@@ -148,9 +146,7 @@ public class CameraOpMode extends OpMode {
             }
 
             // get the content in bytes
-            byte[] contentInBytes = content.getBytes();
-
-            fop.write(contentInBytes);
+            yuvImage.compressToJpeg(new Rect(0, 0, width, height), 0, fop);
             fop.flush();
             fop.close();
 
